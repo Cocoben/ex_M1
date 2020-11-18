@@ -71,21 +71,23 @@ tab_open['Year'] = pd.to_datetime(tab_open['Year'])
 #st.bar_chart(tab_open['Netflix','Disney+'])
 
 
-
 #displot
 
 
 
+#Une heatmap des corrélations avec Matplotlib et Seaborn (avec les valeurs annotés)
+#st.write(sns.heatmap(tab_open.corr(),annot=True))
 
-if st.checkbox('Sortie des films par années'):
+
+#Un graphique en barres afin de visualiser la taille du dataset par caractéristiques (on pourra notamment grouper les données afin d’avoir des graphiques plus précis)
+if st.checkbox('Sortie des '+tab_selected+' par années'):
     st.write(sns.displot(tab_open.Year, bins=20, kde=False, aspect= 3))
     st.pyplot()
+
 
 if st.checkbox('Répartition des platformes'):
     st.write(plt.pie(platforme, autopct = "%.2f"))
     st.pyplot()
-
-#st.write(sns.heatmap(tab_open.corr(),annot=True))
 
 dico = {
     'Netflix':[tab_open['Netflix'].sum()],
@@ -96,12 +98,4 @@ dico = {
 platforme = pd.DataFrame(dico)
 
 st.write(platforme)
-
-
-
-
-
-if st.button("Finis"):
-        st.balloons()
-
 

@@ -8,7 +8,8 @@ import seaborn as sns
 import os
 rep_actuel = os.getcwd()
 
-st.title('Petit TP data app')
+st.set_option('deprecation.showPyplotGlobalUse', False)
+st.title('TP Série Film')
 
 
 @st.cache
@@ -48,15 +49,60 @@ if st.checkbox('Afficher les ' + tab_selected):
 #La shape du dataset, par lignes et par colonnes
 
 st.subheader('Colonnes du tableau ' + tab_selected)
-if st.checkbox('Afficher les colonnes'):
-    st.markdown('Nom des colonnes')
-    st.write(list(data_movie))
-    st.markdown('Type des colonnes')
-    st.write(data_movie.dtypes)
-    st.markdown('Shape')
-    st.write(data_movie.shape)
+if st.button('Afficher les colonnes'):
+    st.write(list(tab_open))
+if st.button('Type des colonnes'):
+    st.write(tab_open.dtypes)
+if st.button('Afficher shape'):
+    st.text('Nombre de lignes')
+    st.write(tab_open.shape[0])
+    st.text('Nombre de colonnes')
+    st.write(tab_open.shape[1])
+    st.text('Shape global')
+    st.write(tab_open.shape)
+if st.button('Afficher Describe'):
     st.markdown('Describe')
-    st.write(data_movie.describe())
+    st.write(tab_open.describe())
 
 
-#st.pyplot(tab_open)
+#st.write(sns.lineplot(tab_open['Year'] ))
+
+tab_open['Year'] = pd.to_datetime(tab_open['Year'])
+#st.bar_chart(tab_open['Netflix','Disney+'])
+
+
+
+
+if st.checkbox('Sortie des films par années'):
+    st.write(sns.displot(tab_open.Year, bins=20, kde=False, aspect= 3))
+    st.pyplot()
+
+if st.checkbox('ypoooo2'):
+    st.write(plt.pie(platforme, autopct = "%.2f"))
+    st.pyplot()
+
+#st.write(sns.heatmap(tab_open.corr(),annot=True))
+
+
+#displot
+
+
+dico = {
+    'Netflix':[tab_open['Netflix'].sum()],
+    'Disney+':[tab_open['Disney+'].sum()],
+    'Hulu':[tab_open['Hulu'].sum()],
+    'Prime Video':[tab_open['Prime Video'].sum()]
+}
+platforme = pd.DataFrame(dico)
+
+st.write(platforme)
+
+
+
+
+
+
+if st.button("Thanks"):
+        st.balloons()
+
+

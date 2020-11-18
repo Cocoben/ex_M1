@@ -72,20 +72,20 @@ tab_open['Year'] = pd.to_datetime(tab_open['Year'])
 
 
 
+#displot
+
+
+
 
 if st.checkbox('Sortie des films par années'):
     st.write(sns.displot(tab_open.Year, bins=20, kde=False, aspect= 3))
     st.pyplot()
 
-if st.checkbox('ypoooo2'):
+if st.checkbox('Répartition des platformes'):
     st.write(plt.pie(platforme, autopct = "%.2f"))
     st.pyplot()
 
 #st.write(sns.heatmap(tab_open.corr(),annot=True))
-
-
-#displot
-
 
 dico = {
     'Netflix':[tab_open['Netflix'].sum()],
@@ -101,8 +101,7 @@ st.write(platforme)
 
 
 
-
-if st.button("Thanks"):
+if st.button("Finis"):
         st.balloons()
 
 

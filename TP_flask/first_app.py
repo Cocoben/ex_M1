@@ -1,7 +1,5 @@
-from flask import Flask
-from flask import render_template
-#from flask import request
-from flask import jsonify
+from flask import Flask,render_template,jsonify
+import os,json
 app = Flask(__name__)
 
 
@@ -38,6 +36,7 @@ def apititre(titre=None):
 @app.route('/api/json/')
 def apijson():
     books = libraryjson()
+    return render_template('book.html', books=books)
 
 
 
@@ -57,7 +56,7 @@ def library():
 
 def libraryjson():
     SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
-    json_url = os.path.join(SITE_ROOT, "static", "books.json")
+    json_url = os.path.join(SITE_ROOT, "static", "json", "books.json")
     return json.load(open(json_url))
 
 

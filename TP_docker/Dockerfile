@@ -5,7 +5,7 @@ FROM python:3.8-slim
 WORKDIR /app
 
 # Copy the file from your host to your current location.
-COPY . /app
+COPY requirements.txt .
 
 # Run the command inside your image filesystem.
 RUN pip install -r requirements.txt
@@ -15,6 +15,3 @@ EXPOSE 80
 
 # Run the specified command within the container.
 CMD [ "python", "app.py" ]
-
-# Copy the rest of your app's source code from your host to your image filesystem.
-COPY . .

@@ -1,0 +1,54 @@
+body{
+  font-family: Purisa, sans-serif;
+}
+
+.form-group {
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+#todo {
+    margin: 0 auto;
+    width: 500px;
+
+}
+
+ul{
+  padding: 0;
+}
+
+#todo li{
+  border-bottom:1px solid black;
+  padding:5px;
+  margin:2px;
+  text-align: left;
+  list-style: none;
+}
+
+a {
+  display:block;
+  color:#555555;
+  font-weight:bold;
+  height:30px;
+  text-decoration:none;
+  width:100%;
+}
+
+.task-done{
+  text-decoration: line-through;
+}
+
+.delete {
+	background:url(delete.gif) no-repeat 10px 1px;
+}
+
+.done {
+	background:url(done.png) no-repeat 10px 1px;
+}
+
+.btn{
+  text-indent:30px;
+  display:block;
+  border: none;
+  margin-bottom: 10px;
+}

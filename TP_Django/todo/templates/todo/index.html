@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <title>Todo Application</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'todo/style.css' %}">
+</head>
+<body id="todo">
+    <div class="form-group">
+
+      {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+      <h1>To-Do <small>List</small></h1>
+
+      <form action="{% url 'todo:new' %}" method="post">
+        {% csrf_token %}
+        <label name="new_task">Tâche :</label>
+        <input type="text" name="new_task" id="new_task" value="">  
+        <input type="submit" value="Ajouter la tâche">
+      </form>
+
+
+      <!-- des choses a ajouter ici -->
+
+      {% if tasks_list %}
+      <ul>
+        {%for task in tasks_list%}
+        <li>
+          
+          <a class="task {% if task.is_done == True %} task-done {% endif %}" href="{% url 'todo:edit' task.id %}">{{ task.content }}</a>
+          {% if task.is_done != True %}
+            <form action="{% url 'todo:done' task.id %}" method="post">
+              {% csrf_token %}
+              <input type="submit" value="Finis" class="done btn">
+            </form>
+            <form action="{% url 'todo:delete' task.id %}" method="post">
+              {% csrf_token %}
+              <input type="submit" value="Retirer" class="delete btn">
+            </form>
+          {% endif %}
+    
+        </li>
+        {% endfor %}
+      </ul>
+      {% else %}
+        <p>Aucune tâche</p>
+      {% endif %}
+
+    </div>
+
+    <div></div>
+
+    <ul class="list-unstyled" id="todo">
+      <!-- des choses a ajouter ici -->
+
+    </ul>
+
+</body>
+</html>

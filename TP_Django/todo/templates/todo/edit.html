@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <title>Edit Todo Application</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'todo/style.css' %}">
+</head>
+<body>
+    <div class="form-group">
+      <h1>To-Do <small>Edit</small></h1>
+      <!-- des choses a ajouter ici -->
+
+      <form action="{% url 'todo:edit' task.id %}" method="post">
+        {% csrf_token %}
+        <input type="text" value="{{ task.content }}" name="content" id="content">
+        <p>Tâche créé le {{ task.created_date }} </p>
+        <input type="submit" value="Modifier">
+      </form>
+
+    </div>
+</body>
+</html>
